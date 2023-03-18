@@ -13,13 +13,23 @@ import {
 import { useState } from "react";
 
 
-const RegisterScreen = () => {
+let initialState = {
+    "login": "",
+    "email": "",
+    "password": ""
+}
+
+
+const RegisterScreen = ({navigation}) => {
 
     let [isShowKeyboard, setisShowKeyboard] = useState(false);
+    let [state, setState] = useState(initialState)
 
     const onKeyboardShow = () => {
         setisShowKeyboard(false)
         Keyboard.dismiss();
+        setState(initialState);
+        console.log(state);
     }
 
 
@@ -39,12 +49,16 @@ const RegisterScreen = () => {
                             style={styles.input}
                             placeholder="Введите логин"
                             onFocus={() => setisShowKeyboard(true)}
+                            value={state.login}
+                            onChangeText={(value) => setState((prevState) => ({...prevState, login: value}))}
                         />
 
                         <TextInput
                             style={styles.input}
                             placeholder="Введите эмейл"
                             onFocus={() => setisShowKeyboard(true)}
+                            value={state.email}
+                            onChangeText={(value) => setState((prevState) => ({...prevState, email: value}))}
                         />
 
                         <TextInput
@@ -52,6 +66,8 @@ const RegisterScreen = () => {
                             placeholder="Введите пароль"
                             secureTextEntry={true}
                             onFocus={() => setisShowKeyboard(true)}
+                            value={state.password}
+                            onChangeText={(value) => setState((prevState) => ({...prevState, password: value}))}
                         />
 
                         
@@ -66,7 +82,7 @@ const RegisterScreen = () => {
 
                             <Text style={styles.footerTitle}> Уже есть аккаунт? </Text>
                             
-                            <TouchableOpacity style={styles.footerBtn}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
                                 <Text> Войти </Text>
                             </TouchableOpacity>
 
@@ -94,9 +110,9 @@ const styles = StyleSheet.create({
     imageBG: {
         flex: 1,
         resizeMode: 'cover',
-        justifyContent: 'flex-end',
     },
     title: {
+        fontFamily: 'Roboto-Bold',
         marginTop: 52,
         color: '#212121',
         fontWeight: 500,
