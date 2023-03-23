@@ -1,5 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
 
 const Stack = createNativeStackNavigator();
 const TabStack = createBottomTabNavigator();
@@ -22,9 +24,15 @@ export const useRoute = (isAuth) => {
     }
 
     return <TabStack.Navigator screenOptions={{tabBarShowLabel: false}}>
-        <TabStack.Screen  name='Main' component={MainScreen}/>
-        <TabStack.Screen name='Profile' component={ProfileScreen}/>
-        <TabStack.Screen name='Posts' component={PostsScreen}/>
+        <TabStack.Screen options={{
+            tabBarIcon: ({focused, size, color}) => <MaterialCommunityIcons name="menu" size={24} color="black" />
+        }} name='Main' component={MainScreen}/>
+        <TabStack.Screen options={{
+            tabBarIcon: ({focused, size, color}) => <MaterialCommunityIcons name="face-man-profile" size={24} color="black" />
+        }} name='Profile' component={ProfileScreen}/>
+        <TabStack.Screen options={{
+            tabBarIcon: ({focused, size, color}) => <MaterialCommunityIcons name="postage-stamp" size={24} color="black" />
+        }} name='Posts' component={PostsScreen}/>
     </TabStack.Navigator>
 
     }
