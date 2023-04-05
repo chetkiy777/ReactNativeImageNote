@@ -31,7 +31,7 @@ export const useRoute = (isAuth) => {
         }} name='Posts' component={PostsScreen}/>
 
         <TabStack.Screen options={{
-            tabBarIcon: ({focused, size, color}) => <Ionicons name="add-circle-outline" size={size} color={color}  />
+            tabBarIcon: ({focused, size, color}) => <Ionicons name="add-circle-outline" size={40} color={color}  />
         }} name='Create' component={CreateScreen}/>
 
         <TabStack.Screen options={{

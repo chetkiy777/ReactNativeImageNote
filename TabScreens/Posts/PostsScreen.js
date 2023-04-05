@@ -1,11 +1,33 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image, SafeAreaView} from 'react-native';
+import { useState, useEffect } from 'react';
 
 
 
-const PostsScreen = () => {
+const PostsScreen = ({route}) => {
+
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        if (route.params) {
+            setPosts((prevState) => [...prevState, route.params])
+        }
+    }, [route.params]);
+
+    console.log(posts);
+
     return (
         <View style={styles.container}>
-            <Text>PostsScreen</Text>
+            <SafeAreaView>
+                <FlatList   
+                    data={posts}    
+                    keyExtractor={(item, indx) => indx.toString()}
+                    renderItem={({item}) => {
+                        <View style={styles.imgThumb}>
+                            <Image source={{uri: item.photo}} style={{height: 200, width: 350}} />
+                        </View> 
+                    }} 
+                />
+            </SafeAreaView>
         </View>
     )
 }
@@ -14,9 +36,17 @@ const PostsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
     },
+    imgThumb: {
+        marginHorizontal: 10,
+        
+    },
+    img: {
+        height: 200,
+        width: 350,
+    }
+
 
 })
 

@@ -31,6 +31,7 @@ const CreateScreen = ({navigation}) => {
                     <Text style={styles.snapText}>SNAP</Text>
                 </TouchableOpacity>
             </Camera>
+
             { photo && <View>
                     <TouchableOpacity style={styles.sendBtn} onPress={sendPhoto}>
                         <Text style={styles.sendText}>SEND</Text>
