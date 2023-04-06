@@ -1,22 +1,37 @@
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {Camera} from 'expo-camera';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import * as Location from "expo-location";
 
 const CreateScreen = ({navigation}) => {
 
     const [camera, setCamera] = useState(null);
     const [photo, setPhoto] = useState('');
+    const [location, setLocation] = useState('');
 
     const takePhoto = async () => {
 
         let photo = await camera.takePictureAsync();
+        const location = await Location.getCurrentPositionAsync();
         setPhoto(photo.uri)
+        setLocation(location)
     }
 
     const sendPhoto = () => {
 
-        navigation.navigate('Posts', {photo})
+        navigation.navigate('Posts', {photo, location})
     }
+
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+
+            if (status !== 'granted') {
+                setErrorMsg('Permission to access location was denied');
+                return;
+            }
+        })();
+    }, []);
 
     return (
         <View style={styles.container}>

@@ -12,6 +12,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import CreateScreen from './TabScreens/Create/CreateScreen';
 import PostsScreen from './TabScreens/Posts/PostsScreen';
 import ProfileScreen from './TabScreens/Profile/ProfileScreen';
+import MapScreen from './TabScreens/NestedScreens/MapScreen';
 
 
 
@@ -37,6 +38,9 @@ export const useRoute = (isAuth) => {
         <TabStack.Screen options={{
             tabBarIcon: ({focused, size, color}) => <MaterialCommunityIcons name="face-man-profile" size={size} color={color} />
         }} name='Profile' component={ProfileScreen}/>
+
+        <TabStack.Screen options={{
+        }} name='MapScreen' component={MapScreen}/>
         
     </TabStack.Navigator>
 

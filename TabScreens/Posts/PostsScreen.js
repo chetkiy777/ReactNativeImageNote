@@ -1,5 +1,6 @@
-import {View, StyleSheet, Image, SafeAreaView, FlatList, StatusBar} from 'react-native';
+import {View, StyleSheet, Image, SafeAreaView, FlatList, StatusBar, Text, TouchableOpacity} from 'react-native';
 import { useState, useEffect } from 'react';
+
 
 
 const Item = ({photo}) => (
@@ -9,7 +10,7 @@ const Item = ({photo}) => (
 );
 
 
-const PostsScreen = ({route}) => {
+const PostsScreen = ({route, navigation}) => {
 
     const [posts, setPosts] = useState([])
 
@@ -28,7 +29,11 @@ const PostsScreen = ({route}) => {
                 renderItem={({item}) => <Item photo={item.photo} />}
                 keyExtractor={(item, indx) => indx}
             />
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('MapScreen', {posts})}>
+                <Text style={styles.sendText}>Go to Map</Text>
+            </TouchableOpacity>
         </SafeAreaView>
+        
     )
 }
 
