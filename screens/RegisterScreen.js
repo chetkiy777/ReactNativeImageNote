@@ -11,6 +11,9 @@ import {
     ImageBackground,
 } from "react-native";
 import { useState } from "react";
+import {useDispatch} from 'react-redux';
+import {authSignUpUser} from '../redux/auth/authOperations';
+
 
 
 let initialState = {
@@ -25,12 +28,15 @@ const RegisterScreen = ({navigation}) => {
     let [isShowKeyboard, setisShowKeyboard] = useState(false);
     let [state, setState] = useState(initialState)
 
+    const dispatch = useDispatch()
+
     const onKeyboardShow = () => {
         setisShowKeyboard(false)
         Keyboard.dismiss();
-        setState(initialState);
-        console.log(state);
+        dispatch(authSignUpUser(state))
     }
+
+
 
 
     return (

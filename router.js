@@ -38,9 +38,6 @@ export const useRoute = (isAuth) => {
         <TabStack.Screen options={{
             tabBarIcon: ({focused, size, color}) => <MaterialCommunityIcons name="face-man-profile" size={size} color={color} />
         }} name='Profile' component={ProfileScreen}/>
-
-        <TabStack.Screen options={{
-        }} name='MapScreen' component={MapScreen}/>
         
     </TabStack.Navigator>
 

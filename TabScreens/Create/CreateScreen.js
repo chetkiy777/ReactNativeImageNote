@@ -19,7 +19,7 @@ const CreateScreen = ({navigation}) => {
 
     const sendPhoto = () => {
 
-        navigation.navigate('Posts', {photo, location})
+        navigation.navigate('DefaultScreen', {photo, location})
     }
 
     useEffect(() => {
